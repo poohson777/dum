@@ -2,6 +2,7 @@ package org.pearl.mapper;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.pearl.domain.BoardVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -20,5 +21,17 @@ public class BoardMapperTests {
 	@Test
 	public void getList() {
 		mapper.getList().forEach(board -> log.info(board));
+	}
+	
+	@Test
+	public void insertTest() {
+		BoardVO board = new BoardVO();
+		board.setTitle("친구를 만나느라");
+		board.setContent("샤샤샤");
+		board.setWriter("트와이수~~~~");
+		
+		mapper.insert(board);
+		
+		log.info(board);
 	}
 }
