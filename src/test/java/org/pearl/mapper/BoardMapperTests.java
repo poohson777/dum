@@ -1,10 +1,4 @@
-package org.pearl.persistence;
-
-import static org.junit.Assert.fail;
-
-import java.sql.Connection;
-
-import javax.sql.DataSource;
+package org.pearl.mapper;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,20 +12,13 @@ import lombok.extern.log4j.Log4j;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
 @Log4j
-public class DataSourceTests {
+public class BoardMapperTests {
 
-	@Setter(onMethod_ = { @Autowired })
-	private DataSource dataSource;
+	@Setter(onMethod = @__({ @Autowired }))
+	private BoardMapper mapper;
 
 	@Test
-	public void testConnection() {
-
-		try (Connection con = dataSource.getConnection()) {
-
-			log.info(con);
-
-		} catch (Exception e) {
-			fail(e.getMessage());
-		}
+	public void getList() {
+		mapper.getList().forEach(board -> log.info(board));
 	}
 }
