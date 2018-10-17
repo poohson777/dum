@@ -2,6 +2,8 @@ package org.pearl.service;
 
 import static org.junit.Assert.assertNotNull;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.pearl.domain.BoardVO;
@@ -40,4 +42,35 @@ public class BoardServiceTests {
 		log.info("생성된 게시물의 번호: " + board.getBno());
 	}
 
+	@Test
+	public void testGetList() {
+
+		service.getList().forEach(board -> log.info(board));
+	}
+
+	@Test
+	public void testRead() {
+		
+		log.info("글이 보이나용~~~" + service.get(5L));
+
+	}
+
+	@Test
+	public void testDelete() {
+		
+		service.remove(3L);
+
+	}
+	
+	@Test
+	public void testModify() {
+		
+		BoardVO board = service.get(2L);
+		
+		if(board == null) {
+			return;
+		}
+		board.setTitle("수정은 크리스탈~~~ㅋㅋ");
+		service.modify(board);
+	}
 }
